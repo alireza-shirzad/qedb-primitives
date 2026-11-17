@@ -39,7 +39,7 @@
 //! The sum of a column on a set of rows, as in `SELECT SUM(col) … WHERE …`:
 //!
 //! ```
-//! use ark_bls12_381::Fr;
+//! use qedb_primitives::curve::Fr;
 //! use ark_std::test_rng;
 //! use qedb_primitives::derived::sum_check::SumCheckProof;
 //! use qedb_primitives::handle::{Set, Slice};
@@ -69,6 +69,7 @@
 #![warn(missing_docs)]
 
 pub mod basic;
+pub mod curve;
 pub mod derived;
 mod error;
 pub mod handle;

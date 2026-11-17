@@ -23,10 +23,10 @@
 use super::range_check::RangeCheckProof;
 use crate::Error;
 use crate::basic::zero_test::ZeroTestProof;
+use crate::curve::Fr;
 use crate::handle::{CommittedSet, CommittedSlice, SetHandle, Slice, SliceHandle};
 use crate::setup::{Srs, VerifierKey};
 use crate::transcript::Transcript;
-use ark_bls12_381::Fr;
 use ark_ff::Zero;
 use ark_poly::EvaluationDomain;
 use ark_serialize::{CanonicalDeserialize, CanonicalSerialize};

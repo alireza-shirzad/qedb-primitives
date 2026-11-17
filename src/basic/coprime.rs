@@ -11,9 +11,9 @@
 
 use super::divide_exact;
 use crate::Error;
+use crate::curve::{Curve, Fr, G1Projective, G2Projective};
 use crate::handle::Set;
 use crate::setup::{Domain, Srs};
-use ark_bls12_381::{Bls12_381, Fr, G1Projective, G2Projective};
 use ark_ec::PrimeGroup;
 use ark_ec::pairing::Pairing;
 use ark_ff::{Field, Zero, batch_inversion};
@@ -63,7 +63,7 @@ impl CoprimeProof {
         g1.push(-rhs);
         g2.push(G2Projective::generator());
 
-        Bls12_381::multi_pairing(g1, g2).is_zero()
+        Curve::multi_pairing(g1, g2).is_zero()
     }
 }
 

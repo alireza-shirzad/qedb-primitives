@@ -10,10 +10,10 @@
 
 use super::divide_exact;
 use crate::Error;
+use crate::curve::{Curve, Fr, G1Projective, G2Projective};
 use crate::handle::{CommittedSet, CommittedSlice, SetHandle, SliceHandle};
 use crate::setup::Srs;
 use crate::transcript::Transcript;
-use ark_bls12_381::{Bls12_381, Fr, G1Projective, G2Projective};
 use ark_ec::PrimeGroup;
 use ark_ec::pairing::Pairing;
 use ark_ff::Zero;
@@ -62,7 +62,7 @@ impl ZeroTestProof {
         transcript: &mut Transcript,
     ) -> Result<(), Error> {
         let rho = self.challenge(v, s, transcript);
-        let check = Bls12_381::multi_pairing(
+        let check = Curve::multi_pairing(
             [
                 self.quotient + G1Projective::generator() * rho,
                 -(v.0 + s.0 * rho),

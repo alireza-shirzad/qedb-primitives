@@ -10,8 +10,8 @@ pub mod union;
 pub mod zero_test;
 
 use crate::Error;
+use crate::curve::Fr;
 use crate::setup::Domain;
-use ark_bls12_381::Fr;
 use ark_ff::{FftField, Zero, batch_inversion};
 use ark_poly::univariate::DensePolynomial;
 use ark_poly::{DenseUVPolynomial, EvaluationDomain};

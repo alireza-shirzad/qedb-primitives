@@ -100,8 +100,8 @@ impl NullifyingProof {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::curve::Fr;
     use crate::handle::{Set, Slice};
-    use ark_bls12_381::Fr;
     use ark_std::test_rng;
 
     // 12 rows in a domain of 16.

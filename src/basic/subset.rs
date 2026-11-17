@@ -4,10 +4,10 @@
 //! checks `e(T̃, [P_{S∖T}]₂) = e(S̃, [1]₂)`, i.e. `P_T · P_{S∖T} = P_S`.
 
 use crate::Error;
+use crate::curve::{Curve, G2Projective};
 use crate::handle::{CommittedSet, SetHandle};
 use crate::setup::Srs;
 use crate::transcript::Transcript;
-use ark_bls12_381::{Bls12_381, G2Projective};
 use ark_ec::PrimeGroup;
 use ark_ec::pairing::Pairing;
 use ark_ff::Zero;
@@ -50,7 +50,7 @@ impl SubsetProof {
     ) -> Result<(), Error> {
         self.append(t, s, transcript);
         let check =
-            Bls12_381::multi_pairing([t.0, -s.0], [self.difference_g2, G2Projective::generator()]);
+            Curve::multi_pairing([t.0, -s.0], [self.difference_g2, G2Projective::generator()]);
         if !check.is_zero() {
             return Err(Error::Rejected("subset test"));
         }

@@ -128,8 +128,8 @@ impl EqSetProof {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::curve::Fr;
     use crate::handle::Slice;
-    use ark_bls12_381::Fr;
     use ark_std::test_rng;
 
     const ELL: usize = 8;

@@ -13,13 +13,13 @@
 //!
 //! Run with `cargo bench`; `QEDB_LOG_ROWS=10,12,14` sets the table sizes (`2^k` rows).
 
-use ark_bls12_381::Fr;
 use ark_serialize::{CanonicalDeserialize, CanonicalSerialize};
 use ark_std::rand::{Rng, SeedableRng, rngs::StdRng};
 use qedb_primitives::Error;
 use qedb_primitives::basic::complement::ComplementProof;
 use qedb_primitives::basic::intersection::IntersectionProof;
 use qedb_primitives::basic::read::ReadProof;
+use qedb_primitives::curve::Fr;
 use qedb_primitives::derived::sign_check::SignCheckProof;
 use qedb_primitives::derived::sum_check::SumCheckProof;
 use qedb_primitives::handle::{

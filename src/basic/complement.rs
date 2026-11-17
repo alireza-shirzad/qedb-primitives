@@ -9,10 +9,10 @@
 //! batched with a challenge `ρ` as `e(X̃ + ρ[1]₁, [P_Y]₂) = e(Ũ + ρỸ, [1]₂)`.
 
 use crate::Error;
+use crate::curve::{Curve, Fr, G1Projective, G2Projective};
 use crate::handle::{CommittedSet, Set, SetHandle};
 use crate::setup::Srs;
 use crate::transcript::Transcript;
-use ark_bls12_381::{Bls12_381, Fr, G1Projective, G2Projective};
 use ark_ec::PrimeGroup;
 use ark_ec::pairing::Pairing;
 use ark_ff::Zero;
@@ -56,7 +56,7 @@ impl ComplementProof {
         transcript: &mut Transcript,
     ) -> Result<(), Error> {
         let rho = self.challenge(universe, x, y, transcript);
-        let check = Bls12_381::multi_pairing(
+        let check = Curve::multi_pairing(
             [
                 x.0 + G1Projective::generator() * rho,
                 -(universe.0 + y.0 * rho),

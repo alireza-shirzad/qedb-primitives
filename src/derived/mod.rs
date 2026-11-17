@@ -6,7 +6,7 @@ pub mod range_check;
 pub mod sign_check;
 pub mod sum_check;
 
-use ark_bls12_381::Fr;
+use crate::curve::Fr;
 use ark_ff::PrimeField;
 
 /// Whether `x` encodes a negative integer: `x > (p − 1) / 2`.

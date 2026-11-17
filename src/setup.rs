@@ -1,7 +1,7 @@
 //! Structured reference string (SRS) and evaluation domain.
 
 use crate::Error;
-use ark_bls12_381::{Fr, G1Affine, G1Projective, G2Affine, G2Projective};
+use crate::curve::{Fr, G1Affine, G1Projective, G2Affine, G2Projective};
 use ark_ec::{AffineRepr, CurveGroup, PrimeGroup, ScalarMul, VariableBaseMSM};
 use ark_ff::{Field, UniformRand, Zero, batch_inversion};
 use ark_poly::{EvaluationDomain, Radix2EvaluationDomain};
@@ -205,7 +205,7 @@ fn commit<G: VariableBaseMSM>(bases: &[G::MulBase], coeffs: &[G::ScalarField]) -
 #[cfg(test)]
 mod tests {
     use super::*;
-    use ark_bls12_381::Bls12_381;
+    use crate::curve::Curve;
     use ark_ec::pairing::Pairing;
     use ark_poly::DenseUVPolynomial;
     use ark_poly::univariate::DensePolynomial;
@@ -224,8 +224,8 @@ mod tests {
         // Degree N = 8: the largest polynomial the SRS supports.
         let p = DensePolynomial::<Fr>::rand(8, rng);
 
-        let lhs = Bls12_381::pairing(srs.commit_g1(&p).unwrap(), G2Projective::generator());
-        let rhs = Bls12_381::pairing(G1Projective::generator(), srs.commit_g2(&p).unwrap());
+        let lhs = Curve::pairing(srs.commit_g1(&p).unwrap(), G2Projective::generator());
+        let rhs = Curve::pairing(G1Projective::generator(), srs.commit_g2(&p).unwrap());
         assert_eq!(lhs, rhs);
     }
 

@@ -4,8 +4,8 @@
 //! handles, [`SetHandle`] and [`SliceHandle`]. Row `i` is the domain element `ωⁱ`.
 
 use crate::Error;
+use crate::curve::{Fr, G1Projective, G2Projective};
 use crate::setup::{Domain, Srs, VerifierKey};
-use ark_bls12_381::{Fr, G1Projective, G2Projective};
 use ark_ec::PrimeGroup;
 use ark_ff::{Field, Zero};
 use ark_poly::univariate::DensePolynomial;

@@ -10,10 +10,10 @@
 
 use super::coprime::CoprimeProof;
 use crate::Error;
+use crate::curve::Fr;
 use crate::handle::{CommittedSet, Set, SetHandle};
 use crate::setup::Srs;
 use crate::transcript::Transcript;
-use ark_bls12_381::Fr;
 use ark_serialize::{CanonicalDeserialize, CanonicalSerialize};
 
 /// Proof that a set is the union of other sets.
@@ -69,7 +69,7 @@ impl UnionProof {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use ark_bls12_381::G1Projective;
+    use crate::curve::G1Projective;
     use ark_ff::Zero;
     use ark_std::test_rng;
 

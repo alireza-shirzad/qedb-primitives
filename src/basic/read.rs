@@ -15,10 +15,10 @@
 use super::divide_by_linear;
 use super::zero_test::ZeroTestProof;
 use crate::Error;
+use crate::curve::{Curve, Fr, G1Projective, G2Projective};
 use crate::handle::{CommittedSet, CommittedSlice, SetHandle, Slice, SliceHandle};
 use crate::setup::{Domain, Srs, VerifierKey};
 use crate::transcript::Transcript;
-use ark_bls12_381::{Bls12_381, Fr, G1Projective, G2Projective};
 use ark_ec::PrimeGroup;
 use ark_ec::pairing::Pairing;
 use ark_ff::{Zero, batch_inversion};
@@ -86,7 +86,7 @@ impl ReadProof {
         let y = sparse_at_r + gamma * set_at_r;
         // e(C̃ + γX̃ − y[1]₁, [1]₂) = e(π, [τ − r]₂)
         let g1 = G1Projective::generator();
-        let check = Bls12_381::multi_pairing(
+        let check = Curve::multi_pairing(
             [
                 self.sparse.0 + x.0 * gamma - g1 * y + self.opening * r,
                 -self.opening,

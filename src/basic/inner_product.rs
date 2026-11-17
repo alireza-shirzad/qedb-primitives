@@ -13,10 +13,10 @@
 //! `y` into the coefficient of `x^{N−1}` of `R`.
 
 use crate::Error;
+use crate::curve::{Curve, Fr, G1Projective, G2Projective};
 use crate::handle::{CommittedSlice, SliceHandle};
 use crate::setup::{Srs, VerifierKey};
 use crate::transcript::Transcript;
-use ark_bls12_381::{Bls12_381, Fr, G1Projective, G2Projective};
 use ark_ec::PrimeGroup;
 use ark_ec::pairing::Pairing;
 use ark_ff::{Field, Zero};
@@ -90,7 +90,7 @@ impl InnerProductProof {
         let z_h = G2Projective::from(vk.tau_n) - G2Projective::generator();
 
         // Equation 1 + ρ·(2) + ρ²·(3), grouped by the G2 element.
-        let check = Bls12_381::multi_pairing(
+        let check = Curve::multi_pairing(
             [
                 u.0 - g1 * rho,
                 v.0 * rho - g1 * (y * domain.size_inv) - self.shifted_remainder * rho2,

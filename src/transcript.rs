@@ -3,7 +3,7 @@
 //! Every test appends all its inputs (handles and public values) and every element of its proof
 //! before drawing a challenge, so that a challenge depends on everything the verifier relies on.
 
-use ark_bls12_381::Fr;
+use crate::curve::Fr;
 use ark_ff::PrimeField;
 use ark_serialize::CanonicalSerialize;
 use sha2::{Digest, Sha512};

@@ -16,10 +16,10 @@
 
 use crate::Error;
 use crate::basic::divide_by_linear;
+use crate::curve::{Curve, Fr, G1Projective, G2Projective};
 use crate::handle::{CommittedSlice, SliceHandle};
 use crate::setup::{Domain, Srs, VerifierKey};
 use crate::transcript::Transcript;
-use ark_bls12_381::{Bls12_381, Fr, G1Projective, G2Projective};
 use ark_ec::pairing::Pairing;
 use ark_ec::{AdditiveGroup, CurveGroup, PrimeGroup, VariableBaseMSM};
 use ark_ff::{BigInteger, FftField, Field, PrimeField, Zero, batch_inversion};
@@ -169,7 +169,7 @@ impl RangeCheckProof {
             .zip(&powers)
             .map(|(y, p)| *y * p)
             .sum();
-        let check = Bls12_381::multi_pairing(
+        let check = Curve::multi_pairing(
             [
                 combined - G1Projective::generator() * value + self.opening * gamma,
                 -self.opening,

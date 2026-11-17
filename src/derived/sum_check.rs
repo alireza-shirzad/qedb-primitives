@@ -12,12 +12,12 @@
 use super::nullifying::NullifyingProof;
 use crate::Error;
 use crate::basic::inner_product::InnerProductProof;
+use crate::curve::Fr;
 use crate::handle::{
     CommittedSet, CommittedSlice, SetHandle, Slice, SliceHandle, Universe, UniverseHandle,
 };
 use crate::setup::{Srs, VerifierKey};
 use crate::transcript::Transcript;
-use ark_bls12_381::Fr;
 use ark_ff::{Field, Zero};
 use ark_serialize::{CanonicalDeserialize, CanonicalSerialize};
 
